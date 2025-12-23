@@ -1,5 +1,4 @@
 # Lee-seohyun
-```markdown
 # 피로그래밍 24기 과제 제출 저장소 📚
 <br>
 
