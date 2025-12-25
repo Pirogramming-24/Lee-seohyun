@@ -1,0 +1,230 @@
+body {
+  margin: 0;                        /*기본 여백 제거*/
+  font-family: Arial, sans-serif;   
+  background: black;               
+  color: white;                     
+}
+
+
+img {
+  max-width: 100%;
+}
+
+/* 플젝 큰박스들 */
+.container {
+  max-width: 1200px; /* 너무 넓어지지 않게 */
+  margin: 0 auto;    /* 가운데 정렬 */
+  padding: 0 18px;   /* 좌우 여백 */
+}
+
+
+.site-header {
+  background: black;
+}
+
+.header-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 로고 크기 */
+.brand img {
+  height: 28px;
+  width: auto;
+}
+
+.site {
+  display: flex;
+  gap: 14px;
+}
+
+.site_link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 10px;
+  border-radius: 10px;
+
+    /*hover */
+  transition: transform 0.2s;
+}
+
+.site_link:hover {
+  transform: translateY(-2px);
+}
+
+.site_link_active {
+  color: #0bec12;
+}
+
+.page {
+  padding: 24px 0 40px;
+}
+
+
+.gen-tabs {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.gen-tab {
+  padding: 10px 14px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+/* 23*/
+.gen-head {
+  margin: 20px 0 18px;
+}
+
+.gen-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* 카드목록*/
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/*카드*/
+.project-card {
+  background: #333333;
+  border-radius: 18px;
+  padding: 14px;
+
+  display: grid;
+  grid-template-columns: 120px 1fr 34px;
+  gap: 14px;
+
+  /*hover*/
+  transition: transform 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+}
+
+.project_media {
+  width: 120px;
+  height: 86px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+}
+
+.project_media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   
+  padding: 10px;        
+  box-sizing: border-box;
+
+  transition: transform 0.2s;
+}
+
+.project-card:hover .project_media img {
+  transform: scale(1.1);
+}
+
+.project_title {
+  margin: 2px 0 6px;
+  font-size: 18px;
+}
+
+.project_desc {
+  margin: 0 0 10px;
+  color: #c6c6c6;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.mems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mem {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 10px;
+    font-weight: 700;
+  background: #898989;
+  color: white;
+}
+
+.leader {
+  background: #2188b6;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  
+}
+
+/* 햄버거*/
+.menu-icon {
+  display: flex;             
+  flex-direction: column;
+    top: 10px; 
+  right: 10px;
+  gap: 5px;                   
+  padding: 10px;
+}
+
+/* 선3개*/
+.menu-icon span {
+  width: 25px;
+  height: 3px;
+  background: #898989;
+  display: block;
+  transition: transform 0.2s, width 0.2s;
+    
+}
+
+.project-card:hover .menu-icon span {
+  width: 15px;
+}
+.project-card:hover .menu-icon span:nth-child(2) {
+  width: 20px;
+}
+
+
+@media (max-width: 520px) {
+  .project-card {
+    grid-template-columns: 1fr 34px;
+    grid-template-rows: auto auto;
+  }
+
+  .project_media {
+    grid-column: 1 / -1; /* 이미지 한줄 전체 */
+    width: 100%;
+    height: 132px;
+  }
+
+  .project_media img {
+    padding: 12px; /* 작은 화면에서 여백조절 */
+  }
+
+  .project_body {
+    grid-column: 1 / -1; /* 텍스트 한 줄 전체 */
+  }
+
+  .menu-icon {
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: end;
+    align-self: start;
+  }
+}
