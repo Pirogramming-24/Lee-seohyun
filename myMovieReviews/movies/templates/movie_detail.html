@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <h1>
+    <a href="{% url 'movie_list' %}" style="text-decoration:none; color:inherit;">
+      MY MOVIE REVIEWS
+    </a>
+</head>
+<body>
+  <h2>{{ movie.title }}</h2>
+
+  <p><strong>본 날짜:</strong> {{ movie.date }}</p>
+  <p><strong>별점:</strong> {{ movie.score}}</p>
+  <p><strong>러닝타임:</strong>{{movie.runtime}}분</p>
+  <p><strong>감독:</strong>{{movie.director}}</p>
+  <p><strong>배우:</strong>{{movie.actor}}</p>
+
+  <p>{{ movie.review|linebreaksbr}}</p>
+  <hr />
+
+  <a href="/movies/{{ movie.pk }}/edit/">수정하기</a>
+<form action="{% url 'movie_delete' movie.pk %}" method="POST" style="display:inline;">
+  {% csrf_token %} <!---->
+  <button type="submit">삭제하기</button>
+</form>
+</body>
+</html>

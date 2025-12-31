@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Movie List</title>
+</head>
+<body>
+  <h1>MY MOVIE REVIEWS</h1>
+
+  <ul>
+    {% for m in movies %}
+      <li>
+        <a href= "/movies/{{ m.pk }}/" >{{ m.title }}</a><br>
+        개봉년도: {{ m.year }}<br>
+        장르:  {{m.genre}}<br>
+        별점: {{ m.score }}<br>
+
+      </li>
+    {% empty %}
+      <li>영화 기록이 없습니다.</li>
+    {% endfor %}
+  </ul>
+
+  <a href="/movies/new/">리뷰 작성</a>
+</body>
+</html>
