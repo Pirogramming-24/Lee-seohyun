@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Idea Site</title>
+</head>
+<body>
+  <nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd;">
+    <a href="{% url 'idea_site:idea_list' %}">Ideas</a>
+    <a href="{% url 'idea_site:devtool_list' %}">DevTools</a>
+    <a href="{% url 'idea_site:idea_create' %}">아이디어 등록</a>
+    <a href="{% url 'idea_site:devtool_create' %}">개발툴 등록</a>
+
+  </nav>
+
+  <main style="padding:16px;">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

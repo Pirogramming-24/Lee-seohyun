@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    
+    <h1>{{ idea.title }}</h1>
+
+    {% if idea.image %}
+    <img src="{{ idea.image.url }}" style="max-width:500px; width:100%; border-radius:10px;">
+    {% endif %}
+
+    <p>{{ idea.content }}</p>
+
+<ul>
+  <li>관심도: {{ idea.interest }}</li>
+  <li>개발툴: {{ idea.devtool.name }}</li>
+  <li>찜 개수: {{ idea.star_count }}</li>
+</ul>
+
+<div style="display:flex; gap:10px; margin-top:16px;">
+  <a href="{% url 'idea_site:idea_update' idea.id %}">수정</a>
+
+  <form method="post" action="{% url 'idea_site:idea_delete' idea.id %}">
+    {% csrf_token %}
+    <button type="submit">삭제</button>
+  </form>
+
+  <a href="{% url 'idea_site:idea_list' %}">목록</a>
+</div>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>개발툴 등록</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">저장</button>
+</form>
+
+<a href="{% url 'idea_site:devtool_list' %}">목록으로</a>
+
+{% endblock %}
