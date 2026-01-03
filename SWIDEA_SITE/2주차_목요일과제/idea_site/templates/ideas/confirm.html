@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+{% block content %}
+
+<h2>정말 삭제할까?</h2>
+<p>{{ object }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">삭제</button>
+</form>
+
+<a href="javascript:history.back()">취소</a>
+
+{% endblock %}
+</body>
+</html>

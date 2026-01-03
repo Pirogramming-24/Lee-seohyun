@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+
+    <h1>{% if mode == "create" %}아이디어 등록{% else %}아이디어 수정{% endif %}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">저장</button>
+    </form>
+
+    <a href="{% url 'idea_site:idea_list' %}">목록으로</a>
+
+    {% endblock %}
+
+    
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ tool.name }}</h1>
+
+<p>{{ tool.kind }}</p>
+<p>{{ tool.content }}</p>
+
+<div style="margin:12px 0;">
+  <a href="{% url 'idea_site:devtool_update' tool.id %}">수정</a>
+  <form method="post" action="{% url 'idea_site:devtool_delete' tool.id %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">삭제</button>
+  </form>
+  <a href="{% url 'idea_site:devtool_list' %}">목록</a>
+</div>
+
+<hr>
+
+<h3>>만들 수 있는 SW목록</h3>
+<ul>
+  {% for idea in ideas %}
+    <li>
+      <a href="{% url 'idea_site:idea_detail' idea.id %}">{{ idea.title }}</a>
+    </li>
+  {% empty %}
+    <li>연결된 아이디어가 없습니다.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

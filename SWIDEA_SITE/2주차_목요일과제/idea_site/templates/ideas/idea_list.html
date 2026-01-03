@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>아이디어 관리</h1>
+
+<div style="margin:10px 0 18px;">
+</div>
+
+<form method="get" style="margin:12px 0;">
+  <label>정렬:</label>
+  <select name="sort" onchange="this.form.submit()">
+    <option value="latest" {% if sort == "latest" %}selected{% endif %}>최신순</option>
+    <option value="oldest" {% if sort == "oldest" %}selected{% endif %}>등록순</option>
+    <option value="name" {% if sort == "name" %}selected{% endif %}>이름순</option>
+    <option value="stars" {% if sort == "stars" %}selected{% endif %}>찜하기순</option>
+  </select>
+</form>
+
+<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px;">
+  {% for idea in ideas %}
+    <div style="position:relative; border:1px solid #ddd; padding:12px; border-radius:10px;">
+
+      <form method="post"
+            action="{% url 'idea_site:idea_star_toggle' idea.id %}"
+            style="position:absolute; top:10px; right:10px; margin:0;">
+        {% csrf_token %}
+        <button type="submit"
+                style="font-size:22px; background:transparent; border:none; cursor:pointer;"
+                aria-label="찜하기">
+          {% if idea.id in starred_ids %}★{% else %}☆{% endif %}
+        </button>
+      </form>
+
+      <!-- 사진 -->
+      {% if idea.image %}
+        <img src="{{ idea.image.url }}" style="width:100%; height:140px; object-fit:cover; border-radius:8px;">
+      {% else %}
+        <div style="width:100%; height:140px; background:#f2f2f2; border-radius:8px;"></div>
+      {% endif %}
+
+      <!-- 제목 -->
+      <div style="margin-top:10px;">
+        <a href="{% url 'idea_site:idea_detail' idea.id %}" style="font-weight:700;">
+          {{ idea.title }}
+        </a>
+      </div>
+
+      <!-- 개발툴 -->
+      <div style="font-size:12px; color:#666; margin-top:6px;">
+        개발툴: {{ idea.devtool.name }}
+      </div>
+
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
